@@ -4,6 +4,10 @@ from receive import receive
 
 app = Flask(__name__)
 
+@app.route('/success/<message>')
+def success(message):
+    return render_template('success.html',message = message)
+
 @app.route('/')
 def index():
     return render_template('index.html')
@@ -14,8 +18,9 @@ def sender():
         return render_template('sender.html')
     else:
         path = request.form['path']
-        send(path, raw_input())
-        return "Sent!"
+        send(path,9999)
+        message = "SentSuccessfully"
+        return redirect(url_for('success',message = message))
 
 @app.route('/receiver', methods = ['POST','GET'])
 def receiver():
@@ -23,8 +28,9 @@ def receiver():
         return render_template('receiver.html')
     else:
         ip = request.form['ip']
-        receive(ip, raw_input())
-        return "Received!"
+        receive(ip,9999)
+        message = "ReceivedSuccessfully"
+        return redirect(url_for('success',message = message))
 
 if __name__ == "__main__":
     app.run(debug=True)
