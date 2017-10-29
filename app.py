@@ -30,13 +30,20 @@ def sender():
 
 @app.route('/receiver', methods = ['POST','GET'])
 def receiver():
-    if request.method == "GET":
-        return render_template('receiver.html')
-    else:
-        ip = request.form['ip']
-        receive(ip,9999)
-        message = "ReceivedSuccessfully"
-        return redirect(url_for('success',message = message))
+    error = None
+    try:
+        if request.method == "GET":
+            return render_template('receiver.html')
+        else:
+            ip = request.form['ip']
+            receive(ip,9999)
+            message = "ReceivedSuccessfully"
+            return redirect(url_for('success',message = message))
+    except Exception as e:
+        error = "IP Invalid or change port"
+        return redirect(url_for('index'))
+    return render_template('index.html')
+
 
 if __name__ == "__main__":
     app.run(debug=True)
