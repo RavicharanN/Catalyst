@@ -1,6 +1,7 @@
 import socket
 import os
 import ntpath
+import shutil
 
 
 def send(path, port):
@@ -23,7 +24,13 @@ def send(path, port):
 
     filepath = str(path)
     filename = ntpath.basename(filepath)
-    f = open(filepath,'rb')
+
+    if os.path.isdir(path)==True:
+        f = open(shutil.make_archive(filename, "zip", str(path)), 'rb')
+        filename += ".zip"
+    else:
+        f = open(filepath, 'rb')
+
     l = f.read(1024)
     print ("Sending file " + filename)
 
