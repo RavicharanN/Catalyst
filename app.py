@@ -1,8 +1,14 @@
 from flask import Flask,render_template,url_for,redirect,request
 from send import send
 from receive import receive
+from flask_compress import Compress
 
 app = Flask(__name__)
+
+COMPRESS_MIMEYPES = ['text/html','text/css','text/js']
+COMPRESS_LEVEL = 6
+COMPRESS_MIN_SIZE = 500
+Compress(app)
 
 @app.route('/success/<message>')
 def success(message):
