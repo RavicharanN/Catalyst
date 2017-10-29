@@ -16,6 +16,6 @@ def receive(ip, portNo):
             f.write(data)
 
     f.close()
-    print('Successfully get the file')
+    print('Received Successfully')
     s.close()
     print('connection closed')
