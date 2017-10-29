@@ -41,8 +41,8 @@ def receiver():
             return redirect(url_for('success',message = message))
     except Exception as e:
         error = "IP Invalid or change port"
-        return redirect(url_for('/'))
-    return redirect(url_for('/'))
+        return redirect(url_for('index'))
+    return render_template('index.html')
 
 @app.errorhandler(404)
 def page_not_found(e):
