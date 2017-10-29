@@ -10,11 +10,12 @@ s.listen(9)
 
 socket_list = []
 socket_list.append('send')
-client_thread,address = s.accept()
+
 print("Connection established. Send a message")
 
 while True:
     if socket_list[len(socket_list)-1] == 'send':
+        client_thread,address = s.accept()
         print "Enter message"
         send_data = raw_input()
         client_thread.send(send_data)
@@ -23,7 +24,7 @@ while True:
     elif socket_list[len(socket_list)-1] == 'recv':
         recv_data = client_thread.recv(1024)
         if recv_data:
-            print "Message fron the client:"
+            print "Message from the client:"
             print(recv_data)
             socket_list.remove('recv')
             socket_list.append('send')
