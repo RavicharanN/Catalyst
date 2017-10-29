@@ -1,11 +1,21 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Raleway:300,400,600,700&amp;lang=en" />
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='success.css') }}" >
     <meta charset="utf-8">
     <title>Success</title>
   </head>
   <body>
-    <h1>asdasfasfasfasfas</h1>
-    {{message}}
+    <div class="container" style="text-align:center;font-family:Raleway;">
+      <br><br><br>
+      <img src="{{ url_for('static',filename='img/ac.png') }}" alt="Ac" width="45" height="45">
+      <h2 styel="text-align:center;font-family:Raleway;top:49%;right:49%">{{message}}!</h2>
+      <br>
+      <a class="btn btn-link-1" href="{{ url_for('index') }}" style="margin-top:20px">Back to Home</a>
+    </div>
   </body>
 </html>
